@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+ {% load static %} 
+ {% block content %}
+<div class="row">
+  <div class="col-sm-4">
+    <h4 class="text-center alert alert-info">Add new Student</h4>
+    <form action="" method="POST" novalidate>
+      {% csrf_token %} {{form.non_field_errors}} {% for field in form %}
+      {{field.label_tag}} {{field}} {{field.errors}} {% endfor %}
+
+      <button type="submit" class="btn btn-success mt-3">Add</button>
+    </form>
+  </div>
+  <!-- 2nd col -->
+  <div class="col-sm-7 rizwan">
+  <h4 class = "text-center alert alert-info">  Show Student Information </h4>
+  {% if data %}
+
+  <h4> Table Data </h4>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+      <th class="text-center" scope="col" colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for var in data %}
+    <tr>
+      <th scope="row"> {{var.id}} </th>
+      <td>{{var.name}}</td>
+      <td> {{var.email}} </td>
+      <td> {{var.password}} </td>
+      <td>
+<a href="update/{{var.id}}/" class="btn btn-warning"> Edit</a> 
+</td>
+      <td>
+<form action="/delete/{{var.id}}/" method="POST" class="d-inline">{% csrf_token %}
+  <input type="submit" value="Delete" class="btn btn-danger">
+</form>
+</td>
+    </tr>
+    
+  {% endfor %}
+  </tbody>
+</table>
+  
+
+{% else %}
+<h4 class = "text-center alert alert-warning"> No Records </h4>
+
+  {% endif %}
+  </div>
+</div>
+{% endblock content %}
