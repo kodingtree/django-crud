@@ -1,0 +1,1 @@
+web: gunicorn ktapp.wsgi --log-file
