@@ -3,6 +3,11 @@ from .models import modelForm
 from .forms import mainForm
 # Create your views here.
 
+
+
+def testKt(request):
+    return render(request, 'test.html')
+
 # Add and show data to the home page
 def index(request):
     form = mainForm()
