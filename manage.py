@@ -20,7 +20,7 @@ def get_ip():
 # print(get_ip())
 
 
-runserver.default_port = '80'
+# runserver.default_port = '80'
 # runserver.default_addr = get_ip()
 
 def main():
